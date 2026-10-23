@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f8f1df" />
+  <title>BeatBloom — Rhythm training that meets you where you are</title>
+  <meta name="description" content="A playful, accessible rhythm practice tool for children, families, and rehabilitation sessions." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fredoka:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to practice</a>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="BeatBloom home"><span class="brand-mark">B</span><span>BeatBloom</span></a>
+    <nav aria-label="Main navigation">
+      <button class="nav-link active" data-view="home">Practice</button>
+      <button class="nav-link" data-view="progress">Progress</button>
+      <button class="nav-link" data-view="grownups">For grown-ups</button>
+    </nav>
+    <button id="soundToggle" class="icon-btn" aria-label="Mute sounds" title="Sound on">♪</button>
+  </header>
+
+  <main id="main">
+    <section id="homeView" class="view active">
+      <div class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="spark">✦</span> Rhythm practice, your way</span>
+          <h1>Find your beat.<br><em>Grow your focus.</em></h1>
+          <p>Tap along with a friendly rhythm. Every try helps your brain and body work together—one beat at a time.</p>
+          <div class="hero-actions">
+            <button id="quickStart" class="primary-btn">Start a 1-minute session <span>→</span></button>
+            <button id="howItWorks" class="text-btn">How it works <span>↓</span></button>
+          </div>
+          <div class="trust-row"><span>● No score pressure</span><span>● Sensory-friendly</span><span>● Works with any key or tap</span></div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <div class="mascot"><div class="face"><i></i><i></i><b></b></div><div class="leaf l1"></div><div class="leaf l2"></div></div>
+          <div class="note n1">♪</div><div class="note n2">♫</div><div class="note n3">•</div>
+        </div>
+      </div>
+
+      <section id="sessionSetup" class="setup-section">
+        <div class="section-heading"><div><span class="eyebrow">Choose your practice</span><h2>What feels good today?</h2></div><p>You can change these anytime.</p></div>
+        <div class="mode-grid" role="radiogroup" aria-label="Practice mode">
+          <button class="mode-card selected" data-mode="calm" role="radio" aria-checked="true"><span class="mode-icon calm">☁</span><span><strong>Calm & steady</strong><small>Slow, predictable beats</small></span><span class="check">✓</span></button>
+          <button class="mode-card" data-mode="focus" role="radio" aria-checked="false"><span class="mode-icon focus">✦</span><span><strong>Focus quest</strong><small>A little more challenge</small></span><span class="check">✓</span></button>
+          <button class="mode-card" data-mode="move" role="radio" aria-checked="false"><span class="mode-icon move">↟</span><span><strong>Move & groove</strong><small>Big movements, lively beat</small></span><span class="check">✓</span></button>
+        </div>
+        <div class="settings-card">
+          <div class="setting"><label for="duration">Session length <output id="durationOut">1 min</output></label><input id="duration" type="range" min="1" max="5" value="1" step="1"><div class="ticks"><span>1 min</span><span>3 min</span><span>5 min</span></div></div>
+          <div class="setting"><label for="tempo">Beat speed <output id="tempoOut">60 BPM</output></label><input id="tempo" type="range" min="40" max="100" value="60" step="5"><div class="ticks"><span>Slow</span><span>Steady</span><span>Quick</span></div></div>
+          <div class="sensory-setting"><span><strong>Gentle visuals</strong><small>Reduces animation and motion</small></span><label class="switch"><input id="gentleToggle" type="checkbox"><span></span></label></div>
+        </div>
+        <div class="practice-options">
+          <label><span>Movement</span><select id="movement"><option value="tap">Finger or button tap</option><option value="clap">Clap or assisted reach</option><option value="alternate">Alternate hands (F / J)</option><option value="march">Seated march or step — supervised</option></select></label>
+          <label><span>Feedback window</span><select id="feedbackWindow"><option value="120">Getting started · 120 ms</option><option value="80" selected>Steady practice · 80 ms</option><option value="50">Fine timing · 50 ms</option></select></label>
+          <div class="sensory-setting adaptive-option"><span><strong>Adaptive tempo</strong><small>Adjusts gently from recent taps</small></span><label class="switch"><input id="adaptiveToggle" type="checkbox"><span></span></label></div>
+        </div>
+        <button id="startSession" class="primary-btn setup-start">Let’s begin <span>→</span></button>
+      </section>
+    </section>
+
+    <section id="sessionView" class="view session-view" aria-label="Active rhythm session">
+      <div class="session-top"><button id="exitSession" class="back-btn">← Exit</button><div class="session-progress"><span id="sessionLabel">Calm & steady</span><div class="progress-track"><i id="progressFill"></i></div></div><div class="session-actions"><button id="pauseSession" class="pause-btn">Pause</button><div id="timer" class="timer">1:00</div></div></div>
+      <div class="play-area">
+        <p id="movementCue" class="movement-cue">Use a comfortable finger or button tap.</p><div id="feedbackText" class="feedback-text" aria-live="polite">Listen for the beat…</div>
+        <button id="tapTarget" class="tap-target" aria-label="Tap to the beat"><span class="pulse-ring"></span><span class="target-face"><i></i><i></i><b></b></span><small>TAP</small></button>
+        <p id="tapHint" class="tap-hint">Tap the circle or press <kbd>Space</kbd></p>
+        <div class="live-stats"><div><span id="tapCount">0</span><small>taps</small></div><div><span id="accuracyNow">—</span><small>timing</small></div><div><span id="streakNow">0</span><small>steady streak</small></div></div>
+      </div>
+    </section>
+
+    <section id="resultsView" class="view results-view">
+      <div class="results-card"><div class="celebrate">✦</div><span class="eyebrow">Session complete</span><h2>You showed up for your rhythm!</h2><p>Practice is about noticing and trying—not being perfect.</p><div class="result-number"><strong id="resultAccuracy">—</strong><span>average beat difference</span></div><div class="result-grid"><div><b id="resultTaps">0</b><span>total taps</span></div><div><b id="resultStreak">0</b><span>best steady streak</span></div><div><b id="resultTogether">0</b><span id="togetherLabel">taps in practice window</span></div></div><div id="resultMessage" class="result-message"></div><div class="result-actions"><button id="tryAgain" class="primary-btn">Practice again</button><button id="backHome" class="secondary-btn">Back to home</button></div></div>
+    </section>
+
+    <section id="progressView" class="view page-view">
+      <span class="eyebrow">Your rhythm garden</span><h1>Every practice helps you grow.</h1><p class="page-intro">This progress stays only in this browser. Celebrate consistency, not perfection.</p>
+      <div class="progress-summary"><div class="big-stat"><span id="totalSessions">0</span><small>sessions completed</small></div><div><span id="totalMinutes">0</span><small>minutes practiced</small></div><div><span id="bestTiming">—</span><small>smallest beat difference</small></div></div>
+      <div class="history-card"><h2>Recent sessions</h2><div id="historyList" class="history-list"><p class="empty-state">Complete your first practice and it will bloom here.</p></div></div>
+    </section>
+
+    <section id="grownupsView" class="view page-view grownups">
+      <span class="eyebrow">For parents, educators & therapists</span><h1>A gentle tool for guided practice.</h1><p class="page-intro">BeatBloom is an independent rhythm practice prototype inspired by auditory-motor synchronization exercises. It is not a medical device and does not diagnose, treat, or replace professional care.</p>
+      <div class="info-grid"><article><span>01</span><h3>Set up for success</h3><p>Choose a comfortable pace, reduce distractions, and let the child select sitting, clapping, or tapping.</p></article><article><span>02</span><h3>Follow their lead</h3><p>Short, positive sessions are enough. Stop if the child shows discomfort, fatigue, or sensory overload.</p></article><article><span>03</span><h3>Notice, don’t judge</h3><p>Talk about “early,” “late,” and “together” as useful information—not right or wrong answers.</p></article></div>
+      <div class="evidence-card"><div><span class="eyebrow">Research-informed, claims-light</span><h2>What the evidence shaped</h2></div><ul><li><strong>Timing is visible:</strong> the app reports mean absolute beat difference in milliseconds.</li><li><strong>Movement is flexible:</strong> a tap can represent a finger press, clap, assisted reach, or therapist-selected movement.</li><li><strong>Feedback is immediate:</strong> simple early/late/together cues support moment-to-moment adjustment.</li><li><strong>Results need context:</strong> the supplied bibliography includes trials, preliminary studies, case reports, and white papers; this prototype does not infer diagnosis or treatment benefit.</li></ul><a class="secondary-btn research-link" href="https://www.interactivemetronome.com/images/pdfs/IM-RESEARCH-BIBLIOGRAPHY.pdf" target="_blank" rel="noreferrer">View source bibliography ↗</a></div>
+      <div class="privacy-card"><div>⌂</div><span><strong>Private by design</strong><small>No account, camera, microphone, or personal data required. Progress is stored locally. Browser and device latency means results are practice feedback, not calibrated clinical measurements.</small></span><button id="clearData" class="text-btn">Clear progress</button></div>
+    </section>
+  </main>
+  <footer><span>BeatBloom</span><p>Made for different minds, bodies, and ways of learning.</p><small>Educational prototype · Not medical advice</small></footer>
+  <script src="app.js"></script>
+</body>
+</html>
