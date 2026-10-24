@@ -2,6 +2,8 @@
 
 BeatBloom is an accessible browser-based rhythm practice prototype for children, families, educators, and rehabilitation settings. It offers real-time early/late/together feedback, adjustable tempo and session length, gentle visuals, keyboard/touch input, and local-only progress history.
 
+The current prototype also includes a personal device-offset estimate, a standardized one-minute baseline, timing bias and variability metrics, beginning/middle/end session summaries, stability-aware adaptive tempo, progress charts, and local CSV export. Calibration is an approximate personal correction, not clinical hardware calibration.
+
 The evidence review and product rules are documented in [RESEARCH_NOTES.md](RESEARCH_NOTES.md). All 200 references from the supplied bibliography are indexed in `research_catalog.csv`; the extraction can be reproduced with `python scripts/build_research_catalog.py`.
 
 ## Run locally

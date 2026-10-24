@@ -34,7 +34,7 @@
             <button id="quickStart" class="primary-btn">Start a 1-minute session <span>→</span></button>
             <button id="howItWorks" class="text-btn">How it works <span>↓</span></button>
           </div>
-          <div class="trust-row"><span>● No score pressure</span><span>● Sensory-friendly</span><span>● Works with any key or tap</span></div>
+          <div class="trust-row"><span>● No score pressure</span><span>● Sensory-friendly</span><span>● Works with keyboard or tap</span></div>
         </div>
         <div class="hero-art" aria-hidden="true">
           <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
@@ -60,7 +60,11 @@
           <label><span>Feedback window</span><select id="feedbackWindow"><option value="120">Getting started · 120 ms</option><option value="80" selected>Steady practice · 80 ms</option><option value="50">Fine timing · 50 ms</option></select></label>
           <div class="sensory-setting adaptive-option"><span><strong>Adaptive tempo</strong><small>Adjusts gently from recent taps</small></span><label class="switch"><input id="adaptiveToggle" type="checkbox"><span></span></label></div>
         </div>
-        <button id="startSession" class="primary-btn setup-start">Let’s begin <span>→</span></button>
+        <div class="calibration-card">
+          <div><span class="eyebrow">Timing setup</span><strong id="calibrationStatus">Uncalibrated</strong><small id="calibrationDetail">Results are approximate until you estimate this device’s input offset.</small></div>
+          <button id="startCalibration" class="secondary-btn">Estimate device offset</button>
+        </div>
+        <div class="setup-actions"><button id="startSession" class="primary-btn">Let’s begin <span>→</span></button><button id="startBaseline" class="secondary-btn">Run 1-minute baseline</button></div>
       </section>
     </section>
 
@@ -75,12 +79,13 @@
     </section>
 
     <section id="resultsView" class="view results-view">
-      <div class="results-card"><div class="celebrate">✦</div><span class="eyebrow">Session complete</span><h2>You showed up for your rhythm!</h2><p>Practice is about noticing and trying—not being perfect.</p><div class="result-number"><strong id="resultAccuracy">—</strong><span>average beat difference</span></div><div class="result-grid"><div><b id="resultTaps">0</b><span>total taps</span></div><div><b id="resultStreak">0</b><span>best steady streak</span></div><div><b id="resultTogether">0</b><span id="togetherLabel">taps in practice window</span></div></div><div id="resultMessage" class="result-message"></div><div class="result-actions"><button id="tryAgain" class="primary-btn">Practice again</button><button id="backHome" class="secondary-btn">Back to home</button></div></div>
+      <div class="results-card"><div class="celebrate">✦</div><span id="resultEyebrow" class="eyebrow">Session complete</span><h2>You showed up for your rhythm!</h2><p>Practice is about noticing and trying—not being perfect.</p><div class="result-number"><strong id="resultAccuracy">—</strong><span>average beat difference</span></div><div class="result-grid result-grid-wide"><div><b id="resultTaps">0</b><span>total taps</span></div><div><b id="resultTogether">0%</b><span id="togetherLabel">inside practice window</span></div><div><b id="resultBias">—</b><span>early / late bias</span></div><div><b id="resultConsistency">—</b><span>timing variability</span></div></div><div id="segmentSummary" class="segment-summary"></div><div id="baselineComparison" class="baseline-comparison"></div><div id="resultMessage" class="result-message"></div><div class="result-actions"><button id="tryAgain" class="primary-btn">Practice again</button><button id="backHome" class="secondary-btn">Back to home</button></div></div>
     </section>
 
     <section id="progressView" class="view page-view">
       <span class="eyebrow">Your rhythm garden</span><h1>Every practice helps you grow.</h1><p class="page-intro">This progress stays only in this browser. Celebrate consistency, not perfection.</p>
-      <div class="progress-summary"><div class="big-stat"><span id="totalSessions">0</span><small>sessions completed</small></div><div><span id="totalMinutes">0</span><small>minutes practiced</small></div><div><span id="bestTiming">—</span><small>smallest beat difference</small></div></div>
+      <div class="progress-summary"><div class="big-stat"><span id="totalSessions">0</span><small>sessions completed</small></div><div><span id="totalMinutes">0</span><small>minutes practiced</small></div><div><span id="bestTiming">—</span><small>smallest beat difference</small></div><div><span id="baselineTiming">—</span><small>personal baseline</small></div></div>
+      <div class="chart-card"><div class="chart-heading"><div><h2>Timing trend</h2><p>Average beat difference for your latest sessions.</p></div><button id="exportData" class="secondary-btn">Export CSV</button></div><div id="progressChart" class="progress-chart" aria-label="Recent timing trend"></div></div>
       <div class="history-card"><h2>Recent sessions</h2><div id="historyList" class="history-list"><p class="empty-state">Complete your first practice and it will bloom here.</p></div></div>
     </section>
 
@@ -91,6 +96,7 @@
       <div class="privacy-card"><div>⌂</div><span><strong>Private by design</strong><small>No account, camera, microphone, or personal data required. Progress is stored locally. Browser and device latency means results are practice feedback, not calibrated clinical measurements.</small></span><button id="clearData" class="text-btn">Clear progress</button></div>
     </section>
   </main>
+  <div id="calibrationDialog" class="dialog-backdrop" hidden><section class="dialog-card" role="dialog" aria-modal="true" aria-labelledby="calibrationTitle"><span class="eyebrow">Timing setup</span><h2 id="calibrationTitle">Estimate your input offset</h2><p>Use the same speaker and button you will use for practice. Tap <kbd>Space</kbd> or the circle with each beat. This estimates a personal device offset; it is not clinical calibration.</p><button id="calibrationTarget" class="calibration-target" aria-label="Tap with the calibration beat">Tap with the beat</button><strong id="calibrationCount">0 of 12 taps</strong><div class="dialog-actions"><button id="cancelCalibration" class="text-btn">Cancel</button><button id="resetCalibration" class="text-btn">Clear saved estimate</button></div></section></div>
   <footer><span>BeatBloom</span><p>Made for different minds, bodies, and ways of learning.</p><small>Educational prototype · Not medical advice</small></footer>
   <script src="app.js"></script>
 </body>
