@@ -45,6 +45,12 @@
 
       <section id="sessionSetup" class="setup-section">
         <div class="section-heading"><div><span class="eyebrow">Choose your practice</span><h2>What feels good today?</h2></div><p>You can change these anytime.</p></div>
+        <div class="exercise-heading"><div><span class="eyebrow">Exercise track</span><h3>Build one rhythm skill at a time</h3></div><span id="exerciseRecommendation" class="recommendation-badge">Recommended: Steady Beat · Level 1</span></div>
+        <div class="exercise-grid" role="radiogroup" aria-label="Exercise track">
+          <button class="exercise-card selected" data-exercise="steady" role="radio" aria-checked="true"><span class="exercise-number">01</span><span><strong>Steady Beat</strong><small>Build consistent timing with one comfortable movement.</small></span><span class="check">✓</span></button>
+          <button class="exercise-card" data-exercise="alternate" role="radio" aria-checked="false"><span class="exercise-number">02</span><span><strong>Alternating Hands</strong><small>Coordinate left and right using F and J.</small></span><span class="check">✓</span></button>
+        </div>
+        <div class="level-picker"><span>Choose a level</span><div id="levelButtons" class="level-buttons"></div><small id="levelDescription"></small></div>
         <div class="mode-grid" role="radiogroup" aria-label="Practice mode">
           <button class="mode-card selected" data-mode="calm" role="radio" aria-checked="true"><span class="mode-icon calm">☁</span><span><strong>Calm & steady</strong><small>Slow, predictable beats</small></span><span class="check">✓</span></button>
           <button class="mode-card" data-mode="focus" role="radio" aria-checked="false"><span class="mode-icon focus">✦</span><span><strong>Focus quest</strong><small>A little more challenge</small></span><span class="check">✓</span></button>
@@ -85,6 +91,7 @@
     <section id="progressView" class="view page-view">
       <span class="eyebrow">Your rhythm garden</span><h1>Every practice helps you grow.</h1><p class="page-intro">This progress stays only in this browser. Celebrate consistency, not perfection.</p>
       <div class="progress-summary"><div class="big-stat"><span id="totalSessions">0</span><small>sessions completed</small></div><div><span id="totalMinutes">0</span><small>minutes practiced</small></div><div><span id="bestTiming">—</span><small>smallest beat difference</small></div><div><span id="baselineTiming">—</span><small>personal baseline</small></div></div>
+      <div id="exerciseProgress" class="exercise-progress"></div>
       <div class="chart-card"><div class="chart-heading"><div><h2>Timing trend</h2><p>Average beat difference for your latest sessions.</p></div><button id="exportData" class="secondary-btn">Export CSV</button></div><div id="progressChart" class="progress-chart" aria-label="Recent timing trend"></div></div>
       <div class="history-card"><h2>Recent sessions</h2><div id="historyList" class="history-list"><p class="empty-state">Complete your first practice and it will bloom here.</p></div></div>
     </section>
